@@ -1,7 +1,7 @@
 # Load localized strings — automatic fallback to en-US if culture file is missing
-Import-LocalizedData -BindingVariable script:Strings -FileName FITS.StringUtils -ErrorAction SilentlyContinue
+Import-LocalizedData -BindingVariable Strings -FileName "FITS.StringUtils.psd1" -ErrorAction SilentlyContinue
 if (-not $script:Strings) {
-    Import-LocalizedData -BindingVariable script:Strings -FileName FITS.StringUtils `
+    Import-LocalizedData -BindingVariable Strings -FileName FITS.StringUtils.psd1 `
                          -UICulture 'en-US' -ErrorAction SilentlyContinue
 }
 
@@ -12,8 +12,13 @@ $script:CharacterSets = & ([scriptblock]::Create(
 
 $MyInvocation.MyCommand.ScriptBlock.Module.OnRemove = {
     Write-Verbose $script:Strings.ModuleRemoved
-    Remove-Variable -Name CharacterSets -Scope Script -ErrorAction SilentlyContinue
-    Remove-Variable -Name Strings       -Scope Script -ErrorAction SilentlyContinue
+    $varstoRemove = @('CharacterSets', 'Strings')
+    foreach ($var in $varstoRemove) {
+        if (Get-Variable -Name $var -Scope Script -ErrorAction SilentlyContinue) {
+            Remove-Variable -Name $var -Scope Script 
+            Write-Verbose ($script:Strings.VerboseVarRemoved -f $var)
+        }
+    }
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -70,7 +75,7 @@ function Convert-SpecialCharsInString {
         }
 
         # Build replacement hashtable and compile regex pattern once for the entire pipeline
-        $table = @{}
+        $table = New-Object System.Collections.Hashtable
         for ($i = 0; $i -lt $activePairs.Count; $i += 2) {
             $table[$activePairs[$i]] = $activePairs[$i + 1]
             Write-Verbose ($script:Strings.VerbosePair -f $activePairs[$i], $activePairs[$i + 1])

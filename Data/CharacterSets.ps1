@@ -144,50 +144,86 @@ $_RomanceChars = [string[]]@(
 )
 
 $_EasternEuChars = [string[]]@(
-    [char]0x0105,   'a'     [char]0x0104,   'A'     # a/A ogonek (Polish)
-    [char]0x0119,   'e'     [char]0x0118,   'E'     # e/E ogonek
-    [char]0x0142,   'l'     [char]0x0141,   'L'     # l/L stroke
-    [char]0x0144,   'n'     [char]0x0143,   'N'     # n/N acute
-    [char]0x015B,   's'     [char]0x015A,   'S'     # s/S acute
-    [char]0x017A,   'z'     [char]0x0179,   'Z'     # z/Z acute
-    [char]0x017C,   'z'     [char]0x017B,   'Z'     # z/Z dot above
-    [char]0x010D,   'c'     [char]0x010C,   'C'     # c/C caron (Czech/Slovak)
-    [char]0x0107,   'c'     [char]0x0106,   'C'     # c/C acute
-    [char]0x010F,   'd'     [char]0x010E,   'D'     # d/D caron
-    [char]0x011B,   'e'     [char]0x011A,   'E'     # e/E caron
-    [char]0x013E,   'l'     [char]0x013D,   'L'     # l/L caron
-    [char]0x013A,   'l'     [char]0x0139,   'L'     # l/L acute
-    [char]0x0148,   'n'     [char]0x0147,   'N'     # n/N caron
-    [char]0x0159,   'r'     [char]0x0158,   'R'     # r/R caron
-    [char]0x0155,   'r'     [char]0x0154,   'R'     # r/R acute
-    [char]0x0161,   's'     [char]0x0160,   'S'     # s/S caron
-    [char]0x0165,   't'     [char]0x0164,   'T'     # t/T caron
-    [char]0x016F,   'u'     [char]0x016E,   'U'     # u/U ring above
-    [char]0x017E,   'z'     [char]0x017D,   'Z'     # z/Z caron
-    [char]0x0151,   'oe'    [char]0x0150,   'Oe'    # o/O double acute (Hungarian)
-    [char]0x0171,   'ue'    [char]0x0170,   'Ue'    # u/U double acute
+    [char]0x0105,   'a'     # a/A ogonek (Polish)
+     [char]0x0104,   'A'     # a/A ogonek (Polish)
+    [char]0x0119,   'e'     # e/E ogonek
+     [char]0x0118,   'E'     # e/E ogonek
+    [char]0x0142,   'l'     # l/L stroke
+     [char]0x0141,   'L'     # l/L stroke
+    [char]0x0144,   'n'     # n/N acute
+     [char]0x0143,   'N'     # n/N acute
+    [char]0x015B,   's'     # s/S acute
+     [char]0x015A,   'S'     # s/S acute
+    [char]0x017A,   'z'     # z/Z acute
+     [char]0x0179,   'Z'     # z/Z acute
+    [char]0x017C,   'z'     # z/Z dot above
+     [char]0x017B,   'Z'     # z/Z dot above
+    [char]0x010D,   'c'     # c/C caron (Czech/Slovak)
+     [char]0x010C,   'C'     # c/C caron (Czech/Slovak)
+    [char]0x0107,   'c'     # c/C acute
+     [char]0x0106,   'C'     # c/C acute
+    [char]0x010F,   'd'     # d/D caron
+     [char]0x010E,   'D'     # d/D caron
+    [char]0x011B,   'e'     # e/E caron
+     [char]0x011A,   'E'     # e/E caron
+    [char]0x013E,   'l'     # l/L caron
+     [char]0x013D,   'L'     # l/L caron
+    [char]0x013A,   'l'     # l/L acute
+     [char]0x0139,   'L'     # l/L acute
+    [char]0x0148,   'n'     # n/N caron
+     [char]0x0147,   'N'     # n/N caron
+    [char]0x0159,   'r'     # r/R caron
+     [char]0x0158,   'R'     # r/R caron
+    [char]0x0155,   'r'     # r/R acute
+     [char]0x0154,   'R'     # r/R acute
+    [char]0x0161,   's'     # s/S caron
+     [char]0x0160,   'S'     # s/S caron
+    [char]0x0165,   't'     # t/T caron
+     [char]0x0164,   'T'     # t/T caron
+    [char]0x016F,   'u'     # u/U ring above
+     [char]0x016E,   'U'     # u/U ring above
+    [char]0x017E,   'z'     # z/Z caron
+     [char]0x017D,   'Z'     # z/Z caron
+    [char]0x0151,   'oe'    # o/O double acute (Hungarian)
+    [char]0x0150,   'Oe'    # o/O double acute (Hungarian)
+    [char]0x0171,   'ue'    # u/U double acute
+    [char]0x0170,   'Ue'    # u/U double acute
 )
 
 $_BalticChars = [string[]]@(
-    [char]0x0101,   'a'     [char]0x0100,   'A'     # a/A macron
-    [char]0x0113,   'e'     [char]0x0112,   'E'     # e/E macron
-    [char]0x0117,   'e'     [char]0x0116,   'E'     # e/E dot (Lithuanian)
-    [char]0x0123,   'g'     [char]0x0122,   'G'     # g/G cedilla (Latvian)
-    [char]0x012B,   'i'     [char]0x012A,   'I'     # i/I macron
-    [char]0x012F,   'i'     [char]0x012E,   'I'     # i/I ogonek (Lithuanian)
-    [char]0x0137,   'k'     [char]0x0136,   'K'     # k/K cedilla (Latvian)
-    [char]0x013C,   'l'     [char]0x013B,   'L'     # l/L cedilla
-    [char]0x0146,   'n'     [char]0x0145,   'N'     # n/N cedilla
-    [char]0x0157,   'r'     [char]0x0156,   'R'     # r/R cedilla
-    [char]0x016B,   'u'     [char]0x016A,   'U'     # u/U macron
-    [char]0x0173,   'u'     [char]0x0172,   'U'     # u/U ogonek (Lithuanian)
+    [char]0x0101,   'a'     # a/A macron
+     [char]0x0100,   'A'     # a/A macron
+    [char]0x0113,   'e'     # e/E macron
+     [char]0x0112,   'E'     # e/E macron
+    [char]0x0117,   'e'     # e/E dot (Lithuanian)
+     [char]0x0116,   'E'     # e/E dot (Lithuanian)
+    [char]0x0123,   'g'     # g/G cedilla (Latvian)
+     [char]0x0122,   'G'     # g/G cedilla (Latvian)
+    [char]0x012B,   'i'     # i/I macron
+     [char]0x012A,   'I'     # i/I macron
+    [char]0x012F,   'i'     # i/I ogonek (Lithuanian)
+     [char]0x012E,   'I'     # i/I ogonek (Lithuanian)
+    [char]0x0137,   'k'     # k/K cedilla (Latvian)
+     [char]0x0136,   'K'     # k/K cedilla (Latvian)
+    [char]0x013C,   'l'     # l/L cedilla
+     [char]0x013B,   'L'     # l/L cedilla
+    [char]0x0146,   'n'     # n/N cedilla
+     [char]0x0145,   'N'     # n/N cedilla
+    [char]0x0157,   'r'     # r/R cedilla
+     [char]0x0156,   'R'     # r/R cedilla
+    [char]0x016B,   'u'     # u/U macron
+     [char]0x016A,   'U'     # u/U macron
+    [char]0x0173,   'u'     # u/U ogonek (Lithuanian)
+     [char]0x0172,   'U'     # u/U ogonek (Lithuanian)
 )
 
 $_TurkishChars = [string[]]@(
-    [char]0x011F,   'g'     [char]0x011E,   'G'     # g/G breve
+    [char]0x011F,   'g'     # g/G breve
+     [char]0x011E,   'G'     # g/G breve
     [char]0x0131,   'i'                             # dotless i
     [char]0x0130,   'I'                             # I with dot above
-    [char]0x015F,   's'     [char]0x015E,   'S'     # s/S cedilla
+    [char]0x015F,   's'     # s/S cedilla
+     [char]0x015E,   'S'     # s/S cedilla
 )
 
 $_ArabicTrans = [string[]]@(
