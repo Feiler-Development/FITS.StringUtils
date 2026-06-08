@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns="http://msh" schema="maml">
+
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Convert-SpecialCharsInString</command:name>
+      <maml:description><maml:para>Ersetzt Sonderzeichen und diakritische Zeichen in einem String anhand eines benannten oder eigenen Zeichensatzes.</maml:para></maml:description>
+      <command:verb>Convert</command:verb><command:noun>SpecialCharsInString</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Ersetzt Sonderzeichen (Buchstaben mit Akzenten, typografische Interpunktion, Diakritika) in einem String durch ASCII-kompatible Entsprechungen. Verwendet einen einzelnen Regex-Durchlauf: das Pattern wird einmal pro Pipeline-Aufruf kompiliert. Zeichensaetze werden aus der Modul-Datendatei geladen und per Name ausgewaehlt. Ein eigenes Array kann die benannten Sets vollstaendig ueberschreiben.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Convert-SpecialCharsInString (NamedSet)</maml:name>
+        <command:parameter required="true" position="0"><maml:name>InputString</maml:name><command:parameterValue>String</command:parameterValue></command:parameter>
+        <command:parameter required="false" position="1"><maml:name>CharacterSet</maml:name><command:parameterValue>String</command:parameterValue></command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Convert-SpecialCharsInString (CustomPairs)</maml:name>
+        <command:parameter required="true" position="0"><maml:name>InputString</maml:name><command:parameterValue>String</command:parameterValue></command:parameter>
+        <command:parameter required="true" position="1"><maml:name>ReplacerPairs</maml:name><command:parameterValue>String[]</command:parameterValue></command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" position="0" valueFromPipeline="true" valueFromPipelineByPropertyName="true">
+        <maml:name>InputString</maml:name>
+        <maml:description><maml:para>Der zu verarbeitende String. Akzeptiert Pipeline-Eingabe und Pipeline-by-Property-Name-Eingabe.</maml:para></maml:description>
+        <command:parameterValue>String</command:parameterValue><dev:type>System.String</dev:type>
+      </command:parameter>
+      <command:parameter required="false" position="1">
+        <maml:name>CharacterSet</maml:name>
+        <maml:description><maml:para>Name des zu verwendenden Zeichensatzes. Standard: Default. Mit Get-CharacterSetNames alle verfuegbaren Sets anzeigen. Kann nicht zusammen mit -ReplacerPairs verwendet werden.</maml:para></maml:description>
+        <command:parameterValue>String</command:parameterValue><dev:type>System.String</dev:type><dev:defaultValue>Default</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" position="1">
+        <maml:name>ReplacerPairs</maml:name>
+        <maml:description><maml:para>Eigenes Ersetzungs-Array als abwechselnde Quelle/Ziel-Paare. Ueberschreibt -CharacterSet. Muss eine gerade Anzahl Elemente enthalten.</maml:para></maml:description>
+        <command:parameterValue>String[]</command:parameterValue><dev:type>System.String[]</dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>--- Beispiel 1: Standard-Zeichensatz ---</maml:title>
+        <dev:code>&apos;Mueller-Luedenscheidt&apos; | Convert-SpecialCharsInString</dev:code>
+        <dev:remarks><maml:para>Ausgabe: MuellerLuedenscheidt</maml:para></dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>--- Beispiel 2: Benannter Zeichensatz ---</maml:title>
+        <dev:code>&apos;Eve O Neill&apos; | Convert-SpecialCharsInString -CharacterSet Email</dev:code>
+        <dev:remarks><maml:para>Verwendet den Email-Set der RFC-gueltige Zeichen behaelt und &amp; zu &apos;and&apos; mappt.</maml:para></dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>--- Beispiel 3: Pipeline mit mehreren Werten ---</maml:title>
+        <dev:code>@(&apos;Mueller&apos;, &apos;Angstroem&apos;, &apos;O Brien&apos;) | Convert-SpecialCharsInString</dev:code>
+        <dev:remarks><maml:para>Das Regex-Pattern wird einmalig im begin-Block kompiliert und fuer alle Pipeline-Objekte wiederverwendet.</maml:para></dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>--- Beispiel 4: Eigene Ersetzungspaare ---</maml:title>
+        <dev:code>&apos;Test and Co.&apos; | Convert-SpecialCharsInString -ReplacerPairs @(&apos;&amp;&apos;,&apos;and&apos;,&apos; &apos;,&apos;_&apos;,&apos;.&apos;,&apos;&apos;)</dev:code>
+        <dev:remarks><maml:para>Ausgabe: Test_und_Co</maml:para></dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>--- Beispiel 5: Nur DACH-Region ---</maml:title>
+        <dev:code>&apos;Oerjan Oeye&apos; | Convert-SpecialCharsInString -CharacterSet DACH</dev:code>
+        <dev:remarks><maml:para>Verwendet nur deutsche und nordische Ersetzungen. Geeignet wenn die Eingabe DACH-Namen enthaelt.</maml:para></dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink><maml:linkText>Get-CharacterSetNames</maml:linkText></maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Get-CharacterSetNames</command:name>
+      <maml:description><maml:para>Gibt die Namen aller verfuegbaren Zeichensaetze zurueck.</maml:para></maml:description>
+      <command:verb>Get</command:verb><command:noun>CharacterSetNames</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Listet alle benannten zusammengesetzten Zeichensaetze auf die aus der Modul-Datendatei (Data/CharacterSets.ps1) geladen wurden. Jeder Set ist eine Kombination aus atomaren Basis-Sets. Die zurueckgegebenen Namen koennen an -CharacterSet von Convert-SpecialCharsInString uebergeben werden. Eingebaute Sets: Default (alle Zeichen), Email (RFC-sicher), DACH (nur Deutsch und Nordisch).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem><maml:name>Get-CharacterSetNames</maml:name></command:syntaxItem>
+    </command:syntax>
+    <command:examples>
+      <command:example>
+        <maml:title>--- Beispiel 1: Verfuegbare Sets auflisten ---</maml:title>
+        <dev:code>Get-CharacterSetNames</dev:code>
+        <dev:remarks><maml:para>Ausgabe: DACH, Default, Email</maml:para></dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>--- Beispiel 2: In einer Pipeline verwenden ---</maml:title>
+        <dev:code>Get-CharacterSetNames | ForEach-Object {
+    &quot;$_ : $($name | Convert-SpecialCharsInString -CharacterSet $_)&quot;
+}</dev:code>
+        <dev:remarks><maml:para>Verarbeitet einen Namen durch alle verfuegbaren Zeichensaetze zum Vergleich.</maml:para></dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink><maml:linkText>Convert-SpecialCharsInString</maml:linkText></maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+
+</helpItems>
